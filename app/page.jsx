@@ -1,32 +1,6 @@
-/**
- * SISTEM MANAJEMEN RISIKO — SEKOLAH UALS (SMA UNKLAB)
- * Kelompok 6: Pontoh Rezza · Palari Estefani · Patuli Zeavani
- *
- * Design: "Academic Shield" — Deep Navy + Teal + Gold
- * Font: Plus Jakarta Sans (Google Fonts)
- * Data: Sesuai Laporan Analisis Risiko Sekolah UALS
- *
- * Rubrik Coverage (target 5/5 semua):
- * [1] Fitur Inti End-to-End  : Asset→Vuln→Threat→Risk→Control + filter/sort/export/history
- * [2] Pemodelan Data & Relasi: many-to-many, kategori, audit trail, asset-linked
- * [3] Validasi Input         : unique, referential integrity, sanitasi, edge cases
- * [4] Perhitungan Risiko     : L×I, konfigurasi threshold, residual, re-calc otomatis
- * [5] Risk Matrix            : heatmap 5×5, ranking, grouping, 3 matriks laporan, edit sel
- * [6] Controls Management   : tipe/status/efektivitas/biaya/ROI, rekomendasi prioritas
- * [7] Auth & RBAC            : 3 roles, least privilege, session, proteksi input
- * [8] UI/UX                  : tema sekolah, responsif, konsisten, animasi halus
- * [9] Code Quality           : modular, seed UALS, audit log, JSDoc, reset data
- */
 
-"use client";
-
-import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import ColManager from "./ColManager.jsx";
-
-
-// ═══════════════════════════════════════════════
 // GOOGLE FONTS INJECTION
-// ═══════════════════════════════════════════════
+
 const injectFonts = () => {
   if (document.getElementById("rms-fonts")) return;
   const link = document.createElement("link");
@@ -36,9 +10,9 @@ const injectFonts = () => {
   document.head.appendChild(link);
 };
 
-// ═══════════════════════════════════════════════
+
 // DESIGN TOKENS
-// ═══════════════════════════════════════════════
+
 const T = {
   // Primary palette — Deep Navy
   navy900: "#0a1628",
@@ -80,7 +54,7 @@ const T = {
 
   // Neutral
   white:   "#ffffff",
-  gray50:  "#f8fafc",
+  gray50:  "#f8fafc", 
   gray100: "#f1f5f9",
   gray200: "#e2e8f0",
   gray300: "#cbd5e1",
@@ -2625,7 +2599,6 @@ export default function App() {
 
   const canAccessSettings = user.role === "admin";
 
-  // Komponen "Akses Ditolak" untuk halaman yang terproteksi
   function AccessDenied() {
     return (
       <div className="fade-in" style={{ display:"flex",alignItems:"center",justifyContent:"center",minHeight:"60vh" }}>
